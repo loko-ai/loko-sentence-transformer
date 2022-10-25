@@ -1,0 +1,20 @@
+{
+  "name": "SentenceTransformer",
+  "id": "SentenceTransformer",
+  "description": "Sentence Transformer with SetFit",
+  "created_on": "25/10/2022, 13:05:06",
+  "last_modify": "25/10/2022, 13:05:06",
+  "graphs": {
+    "main": {
+      "nodes": [],
+      "edges": [],
+      "__class__": "Graph"
+    }
+  },
+  "open": [
+    "main"
+  ],
+  "active": "main",
+  "version": "1.0.0",
+  "__class__": "Project"
+}
