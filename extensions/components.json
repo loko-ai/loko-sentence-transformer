@@ -1,1 +1,101 @@
-[{"name": "SentenceTransformer", "events": null, "group": "Custom", "description": "", "inputs": [{"id": "input", "label": "input", "service": "", "to": "output"}, {"id": "file_input", "label": "file_input", "service": "files", "to": "file_output"}], "outputs": [{"id": "output", "label": "output"}, {"id": "file_output", "label": "file_output"}], "configured": true, "options": {"group": "Custom", "args": [{"name": "param_example", "type": "text", "label": "Param Example", "helper": "just an example"}], "click": null, "icon": "RiTyphoonFill", "values": {}}, "disabled": false}]
+[
+ {
+  "name": "SentenceTransformer",
+  "description": "",
+  "group": "NLP",
+  "icon": "RiTreasureMapFill",
+  "click": null,
+  "configured": true,
+  "inputs": [
+   {
+    "id": "create",
+    "label": "Create Model",
+    "service": "model/create",
+    "to": "create"
+   },
+   {
+    "id": "fit",
+    "label": "Fit",
+    "service": "",
+    "to": "fit"
+   },
+   {
+    "id": "predict",
+    "label": "Predict",
+    "service": "",
+    "to": "predict"
+   },
+   {
+    "id": "evaluate",
+    "label": "Evaluate",
+    "service": "",
+    "to": "evaluate"
+   }
+  ],
+  "outputs": [
+   {
+    "id": "create",
+    "label": "Create Model"
+   }
+  ],
+  "options": {
+   "values": {
+    "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2"
+   },
+   "args": [
+    {
+     "name": "model_name",
+     "type": "text",
+     "label": "Model Name",
+     "helper": "Name to assign to the model",
+     "group": "",
+     "value": null,
+     "description": "",
+     "validation": {
+      "required": "Required field"
+     }
+    },
+    {
+     "name": "pretrained_name",
+     "type": "text",
+     "label": "Pretrained Model Name",
+     "helper": "",
+     "group": "",
+     "value": "sentence-transformers/paraphrase-mpnet-base-v2",
+     "description": "",
+     "validation": {
+      "required": "Required field"
+     }
+    },
+    {
+     "name": "is_multilabel",
+     "type": "boolean",
+     "label": "Multilabel",
+     "helper": "",
+     "group": "",
+     "value": false,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "multi_target_strategy",
+     "type": "dynamic",
+     "label": "Multi-Target Strategy",
+     "helper": "",
+     "group": "",
+     "value": null,
+     "description": "",
+     "validation": null,
+     "parent": "is_multilabel",
+     "condition": "{parent}===true",
+     "dynamicType": "select",
+     "options": [
+      "one-vs-rest",
+      "multi-output",
+      "classifier-chain"
+     ]
+    }
+   ]
+  }
+ }
+]

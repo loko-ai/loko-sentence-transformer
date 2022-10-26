@@ -1,13 +1,260 @@
 {
-  "name": "SentenceTransformer",
-  "id": "SentenceTransformer",
+  "name": "sentence_transformer",
+  "id": "sentence_transformer",
   "description": "Sentence Transformer with SetFit",
   "created_on": "25/10/2022, 13:05:06",
-  "last_modify": "25/10/2022, 13:05:06",
+  "last_modify": "26/10/2022, 16:50:46",
   "graphs": {
     "main": {
-      "nodes": [],
-      "edges": [],
+      "nodes": [
+        {
+          "id": "7e0b2dba-bf51-4df8-85e6-c840f7b7367b",
+          "position": {
+            "x": 434,
+            "y": 136
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "type": "String",
+                "value": "Hello world!"
+              }
+            }
+          },
+          "selectable": true,
+          "draggable": true,
+          "__class__": "Node"
+        },
+        {
+          "id": "2bd67ac3-8026-4cbe-87e0-c7342c6f37c6",
+          "position": {
+            "x": 730,
+            "y": 140
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "SentenceTransformer",
+            "events": null,
+            "description": "",
+            "inputs": [
+              {
+                "id": "create",
+                "label": "Create Model",
+                "service": "model/create",
+                "to": "create"
+              },
+              {
+                "id": "fit",
+                "label": "Fit",
+                "service": "",
+                "to": "fit"
+              },
+              {
+                "id": "predict",
+                "label": "Predict",
+                "service": "",
+                "to": "predict"
+              },
+              {
+                "id": "evaluate",
+                "label": "Evaluate",
+                "service": "",
+                "to": "evaluate"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "create",
+                "label": "Create Model"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "NLP",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "label": "Model Name",
+                  "helper": "Name to assign to the model",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "pretrained_name",
+                  "type": "text",
+                  "label": "Pretrained Model Name",
+                  "helper": "",
+                  "group": "",
+                  "value": "sentence-transformers/paraphrase-mpnet-base-v2",
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "is_multilabel",
+                  "type": "boolean",
+                  "label": "Multilabel",
+                  "helper": "",
+                  "group": "",
+                  "value": false,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "multi_target_strategy",
+                  "type": "dynamic",
+                  "label": "Multi-Target Strategy",
+                  "helper": "",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "is_multilabel",
+                  "condition": "{parent}===true",
+                  "dynamicType": "select",
+                  "options": [
+                    "one-vs-rest",
+                    "multi-output",
+                    "classifier-chain"
+                  ]
+                }
+              ],
+              "click": null,
+              "icon": "RiTreasureMapFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "model_name": "ciao",
+                "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+                "is_multilabel": false
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "__class__": "Node"
+        }
+      ],
+      "edges": [
+        {
+          "id": "reactflow__edge-7e0b2dba-bf51-4df8-85e6-c840f7b7367boutput-2bd67ac3-8026-4cbe-87e0-c7342c6f37c6create",
+          "source": "7e0b2dba-bf51-4df8-85e6-c840f7b7367b",
+          "sourceHandle": "output",
+          "target": "2bd67ac3-8026-4cbe-87e0-c7342c6f37c6",
+          "targetHandle": "create",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        }
+      ],
       "__class__": "Graph"
     }
   },
