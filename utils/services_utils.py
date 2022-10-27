@@ -1,5 +1,4 @@
 from config.AppConfig import REPO_PATH
-from model.sentence_transformer_model import SentenceTransformer
 from utils.serialization_utils import serialize
 
 
@@ -10,4 +9,7 @@ def create_st_model(model_name, pretrained_name, is_multilabel, multi_target_str
     model_path.mkdir(exist_ok=True, parents=True)
     serialize(path=model_path, obj=model_info)
     return f"Model '{model_name}' saved"
+
+
+
 

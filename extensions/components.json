@@ -40,7 +40,9 @@
   ],
   "options": {
    "values": {
-    "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2"
+    "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+    "loss": "CosineSimilarityLoss",
+    "metric": "accuracy"
    },
    "args": [
     {
@@ -60,7 +62,7 @@
      "type": "text",
      "label": "Pretrained Model Name",
      "helper": "",
-     "group": "",
+     "group": "Create Parameters",
      "value": "sentence-transformers/paraphrase-mpnet-base-v2",
      "description": "",
      "validation": {
@@ -72,7 +74,7 @@
      "type": "boolean",
      "label": "Multilabel",
      "helper": "",
-     "group": "",
+     "group": "Create Parameters",
      "value": false,
      "description": "",
      "validation": null
@@ -82,7 +84,7 @@
      "type": "dynamic",
      "label": "Multi-Target Strategy",
      "helper": "",
-     "group": "",
+     "group": "Create Parameters",
      "value": null,
      "description": "",
      "validation": null,
@@ -94,6 +96,88 @@
       "multi-output",
       "classifier-chain"
      ]
+    },
+    {
+     "name": "loss",
+     "type": "select",
+     "label": "Loss function",
+     "helper": "Loss function to use, choose between the one of sentence_transformer Python library",
+     "group": "Fit Parameters",
+     "value": "CosineSimilarityLoss",
+     "description": "",
+     "validation": null,
+     "options": [
+      "CosineSimilarityLoss",
+      "SoftmaxLoss",
+      "MultipleNegativesRankingLoss",
+      "MultipleNegativesSymmetricRankingLoss",
+      "MSELoss",
+      "MarginMSELoss",
+      "ContrastiveLoss",
+      "ContrastiveTensionLoss",
+      "DenoisingAutoEncoderLoss",
+      "TripletLoss"
+     ]
+    },
+    {
+     "name": "metric",
+     "type": "text",
+     "label": "Metric",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": "accuracy",
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "batch_size",
+     "type": "number",
+     "label": "Batch Size",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": null,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "n_iter",
+     "type": "number",
+     "label": "Number of iteration",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": null,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "n_epochs",
+     "type": "number",
+     "label": "Number of epochs",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": null,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "text_feature",
+     "type": "text",
+     "label": "Textual feature name",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": null,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "label_feature",
+     "type": "text",
+     "label": "Label feature name",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": null,
+     "description": "",
+     "validation": null
     }
    ]
   }

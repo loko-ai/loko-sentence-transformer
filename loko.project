@@ -3,7 +3,7 @@
   "id": "sentence_transformer",
   "description": "Sentence Transformer with SetFit",
   "created_on": "25/10/2022, 13:05:06",
-  "last_modify": "26/10/2022, 16:50:46",
+  "last_modify": "27/10/2022, 10:30:24",
   "graphs": {
     "main": {
       "nodes": [
@@ -230,6 +230,227 @@
                 "model_name": "ciao",
                 "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
                 "is_multilabel": false
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "__class__": "Node"
+        },
+        {
+          "id": "d5ce66d9-323b-47e8-bc85-35c193c4ddee",
+          "position": {
+            "x": 723,
+            "y": 384
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": null,
+          "dragging": null,
+          "data": {
+            "name": "SentenceTransformer",
+            "events": null,
+            "description": "",
+            "inputs": [
+              {
+                "id": "create",
+                "label": "Create Model",
+                "service": "model/create",
+                "to": "create"
+              },
+              {
+                "id": "fit",
+                "label": "Fit",
+                "service": "",
+                "to": "fit"
+              },
+              {
+                "id": "predict",
+                "label": "Predict",
+                "service": "",
+                "to": "predict"
+              },
+              {
+                "id": "evaluate",
+                "label": "Evaluate",
+                "service": "",
+                "to": "evaluate"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "create",
+                "label": "Create Model"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "NLP",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "label": "Model Name",
+                  "helper": "Name to assign to the model",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "pretrained_name",
+                  "type": "text",
+                  "label": "Pretrained Model Name",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": "sentence-transformers/paraphrase-mpnet-base-v2",
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "is_multilabel",
+                  "type": "boolean",
+                  "label": "Multilabel",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": false,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "multi_target_strategy",
+                  "type": "dynamic",
+                  "label": "Multi-Target Strategy",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "is_multilabel",
+                  "condition": "{parent}===true",
+                  "dynamicType": "select",
+                  "options": [
+                    "one-vs-rest",
+                    "multi-output",
+                    "classifier-chain"
+                  ]
+                },
+                {
+                  "name": "loss",
+                  "type": "select",
+                  "label": "Loss function",
+                  "helper": "Loss function to use, choose between the one of sentence_transformer Python library",
+                  "group": "Fit Parameters",
+                  "value": "CosineSimilarityLoss",
+                  "description": "",
+                  "validation": null,
+                  "options": [
+                    "CosineSimilarityLoss",
+                    "SoftmaxLoss",
+                    "MultipleNegativesRankingLoss",
+                    "MultipleNegativesSymmetricRankingLoss",
+                    "MSELoss",
+                    "MarginMSELoss",
+                    "ContrastiveLoss",
+                    "ContrastiveTensionLoss",
+                    "DenoisingAutoEncoderLoss",
+                    "TripletLoss"
+                  ]
+                },
+                {
+                  "name": "metric",
+                  "type": "text",
+                  "label": "Metric",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "accuracy",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "batch_size",
+                  "type": "number",
+                  "label": "Batch Size",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "n_iter",
+                  "type": "number",
+                  "label": "Number of iteration",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "n_epochs",
+                  "type": "number",
+                  "label": "Number of epochs",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "text_feature",
+                  "type": "text",
+                  "label": "Textual feature name",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "label_feature",
+                  "type": "text",
+                  "label": "Label feature name",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiTreasureMapFill",
+              "values": {
+                "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+                "loss": "CosineSimilarityLoss",
+                "metric": "accuracy"
               }
             },
             "locked": null
