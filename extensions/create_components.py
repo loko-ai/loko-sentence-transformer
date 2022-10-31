@@ -2,9 +2,9 @@ from loko_extensions.model.components import Component, Input, Output, save_exte
     MultiKeyValue, MKVField
 
 component_description = ""
-fit_service = ""
-predict_service = ""
-evaluate_service = ""
+fit_service = "model/fit"
+predict_service = "model/predict"
+evaluate_service = "model/evaluate"
 # read_db_service = ""
 create_service = "model/create"
 
@@ -30,13 +30,19 @@ loss_args = Select(name="loss", label="Loss function", options=loss_val, helper=
 
 metric = Arg(name="metric", label="Metric", type="text", value="accuracy", group=fit_group)
 
-batch_size = Arg(name="batch_size", label="Batch Size", type="number", group=fit_group)
+batch_size = Arg(name="batch_size", label="Batch Size", type="number", group=fit_group, value=16)
 
-n_iter = Arg(name="n_iter", label="Number of iteration", type="number", group=fit_group)
-n_epochs = Arg(name="n_epochs", label="Number of epochs", type="number", group=fit_group)
+n_iter = Arg(name="n_iter", label="Number of iteration", type="number", group=fit_group, value=10)
+n_epochs = Arg(name="n_epochs", label="Number of epochs", type="number", group=fit_group, value=1)
+learning_rate = Arg(name="learning_rate", label="Learning rate", type="number", group=fit_group, value=0.00002)
 
-text_feature = Arg(name="text_feature", label="Textual feature name", type="text", group=fit_group)
-label_feature = Arg(name="label_feature", label="Label feature name", type="text", group=fit_group)
+text_feature = Arg(name="text_feature", label="Textual feature name", type="text", group=fit_group, value="sentence")
+label_feature = Arg(name="label_feature", label="Label feature name", type="text", group=fit_group, value="label")
+
+compute_eval_metrics = Arg(name="compute_eval_metrics", label="Compute evaluation metrics", type="boolean", group=fit_group, value=False)
+
+# eval_dataset = Dynamic(name="eval_dataset", label="Evaluation dataset", dynamicType="file", parent="compute_eval_metrics", condition="{parent}===true")
+
 
 # bucket_save = Arg(name="bucket_save", label="Bucket Name", type="text", group=save_group, value='influx-bu')
 # measurement_name = Arg(name="measurement_name", label="Measurement Name", type="text", group=save_group)
@@ -52,7 +58,7 @@ label_feature = Arg(name="label_feature", label="Label feature name", type="text
 # fields = MultiKeyValue(name="fields", label="Fields", fields=mkvfields_fields, group=save_group)
 #
 #
-fit_args = [loss_args, metric, batch_size, n_iter, n_epochs, text_feature, label_feature]
+fit_args = [text_feature, label_feature, loss_args, metric, batch_size, n_iter, n_epochs, learning_rate, compute_eval_metrics]
 
 ################################# Delete ARGS #################################
 predict_group = "Predict Parameters"
@@ -100,7 +106,7 @@ input_list = [Input(id="create", label="Create Model", to="create", service=crea
               Input(id="evaluate", label="Evaluate", to="evaluate", service=evaluate_service),
               ]
 output_list = [Output(id="create", label="Create Model"),
-               # Output(id="fit", label="Fit"), Output(id="predict", label="Predict"), Output(id="evaluate", label="Evaluate")
+               Output(id="fit", label="Fit"), Output(id="predict", label="Predict"), Output(id="evaluate", label="Evaluate")
 
                ]
 

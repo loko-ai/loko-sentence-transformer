@@ -5,6 +5,7 @@
   "group": "NLP",
   "icon": "RiTreasureMapFill",
   "click": null,
+  "events": null,
   "configured": true,
   "inputs": [
    {
@@ -16,19 +17,19 @@
    {
     "id": "fit",
     "label": "Fit",
-    "service": "",
+    "service": "model/fit",
     "to": "fit"
    },
    {
     "id": "predict",
     "label": "Predict",
-    "service": "",
+    "service": "model/predict",
     "to": "predict"
    },
    {
     "id": "evaluate",
     "label": "Evaluate",
-    "service": "",
+    "service": "model/evaluate",
     "to": "evaluate"
    }
   ],
@@ -36,13 +37,31 @@
    {
     "id": "create",
     "label": "Create Model"
+   },
+   {
+    "id": "fit",
+    "label": "Fit"
+   },
+   {
+    "id": "predict",
+    "label": "Predict"
+   },
+   {
+    "id": "evaluate",
+    "label": "Evaluate"
    }
   ],
   "options": {
    "values": {
     "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+    "text_feature": "sentence",
+    "label_feature": "label",
     "loss": "CosineSimilarityLoss",
-    "metric": "accuracy"
+    "metric": "accuracy",
+    "batch_size": 16,
+    "n_iter": 10,
+    "n_epochs": 1,
+    "learning_rate": 2e-05
    },
    "args": [
     {
@@ -95,7 +114,29 @@
       "one-vs-rest",
       "multi-output",
       "classifier-chain"
-     ]
+     ],
+     "fields": null,
+     "url": null
+    },
+    {
+     "name": "text_feature",
+     "type": "text",
+     "label": "Textual feature name",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": "sentence",
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "label_feature",
+     "type": "text",
+     "label": "Label feature name",
+     "helper": "",
+     "group": "Fit Parameters",
+     "value": "label",
+     "description": "",
+     "validation": null
     },
     {
      "name": "loss",
@@ -135,7 +176,7 @@
      "label": "Batch Size",
      "helper": "",
      "group": "Fit Parameters",
-     "value": null,
+     "value": 16,
      "description": "",
      "validation": null
     },
@@ -145,7 +186,7 @@
      "label": "Number of iteration",
      "helper": "",
      "group": "Fit Parameters",
-     "value": null,
+     "value": 10,
      "description": "",
      "validation": null
     },
@@ -155,27 +196,27 @@
      "label": "Number of epochs",
      "helper": "",
      "group": "Fit Parameters",
-     "value": null,
+     "value": 1,
      "description": "",
      "validation": null
     },
     {
-     "name": "text_feature",
-     "type": "text",
-     "label": "Textual feature name",
+     "name": "learning_rate",
+     "type": "number",
+     "label": "Learning rate",
      "helper": "",
      "group": "Fit Parameters",
-     "value": null,
+     "value": 2e-05,
      "description": "",
      "validation": null
     },
     {
-     "name": "label_feature",
-     "type": "text",
-     "label": "Label feature name",
+     "name": "compute_eval_metrics",
+     "type": "boolean",
+     "label": "Compute evaluation metrics",
      "helper": "",
      "group": "Fit Parameters",
-     "value": null,
+     "value": false,
      "description": "",
      "validation": null
     }

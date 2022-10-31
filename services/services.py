@@ -1,22 +1,25 @@
 import re
 
+import requests
+
 from sanic import Sanic, Blueprint
 from sanic_openapi import swagger_blueprint
 from sanic_openapi.openapi2 import doc
 from sanic_cors import CORS
 from urllib.parse import unquote
-from pathlib import Path
-from sanic.response import raw
 import sanic
-from sanic.exceptions import SanicException, NotFound
+from sanic.exceptions import SanicException
 
-from business.sentence_transformer import create_st_model
-from config.AppConfig import REPO_PATH
+from model.services_models import FitServiceArgs
+from utils.services_utils import create_st_model, fit_model_service, eval_model_service, get_datasets_format_data, \
+    predict_model_service
+from config.AppConfig import REPO_PATH, ORCHESTRATOR
 from utils.logger_utils import logger
-from utils.serialization_utils import serialize
-from utils.service_utils import load_params
+from utils.services_utils import load_params
 
 from loko_extensions.business.decorators import extract_value_args
+
+import datasets
 
 
 def get_app(name):
@@ -83,22 +86,17 @@ async def create_model(request, model_name):
 
 
 @bp.post("/model/create")
-@doc.tag('Loko Models')
+@doc.tag('Loko Model Services')
 @doc.summary("Save an object in 'models'")
 @doc.description('''
-    Examples
-    --------
-
-           ''')
+''')
 @doc.consumes(doc.JsonBody({}), location="body")
 @extract_value_args(file=False)
 async def loko_create_model(value, args):
     model_name = args.get("model_name", None)
     if not model_name:
         raise ValueError("Model name must be specified...")
-    # pretrained_name = args.get("pretrained_name", None)
-    # is_multilabel = args.get("is_multilabel", false)
-    # multi_target_strategy = args.get("multi_target_strategy", None)
+
     default_params = dict(is_multilabel=False,
                           multi_target_strategy=None,
                           )
@@ -117,6 +115,117 @@ async def loko_create_model(value, args):
         raise e
     return sanic.json(f"Model '{model_name}' saved")
 
+
+@bp.post("/model/fit")
+@doc.tag('Loko Model Services')
+@doc.summary("Fit a sentence transformer object")
+@doc.description('''
+''')
+@doc.consumes(doc.JsonBody({}), location="body")
+@extract_value_args(file=False)
+async def loko_fit_model(value, args):
+    logger.debug(f'valueeeee:::::: {value}')
+    logger.debug(f"argssss=========== {args}")
+    data = value
+    # if train_path:
+    #     file_writer_path = ORCHESTRATOR + "files" + train_path
+    #     logger.debug(f"GW url for writing file: {file_writer_path}")
+    #     train_dataset = requests.get(file_writer_path)
+    # else:
+    #     raise
+
+    if "eval_dataset" in data:
+        eval_data = data.get("eval_dataset", None)
+        eval_dataset = get_datasets_format_data(eval_data)
+        train_data = data.get("train_dataset", None)
+        train_dataset = get_datasets_format_data(train_data)
+    else:
+        train_data = data.copy()
+        train_dataset = get_datasets_format_data(train_data)
+        logger.debug(f"train!!!!! {train_dataset}")
+        eval_dataset = None
+
+
+
+    # train_dataset = value.get("train_dataset", None)
+    compute_eval_metrics = eval(value.get("compute_eval_metrics", "false").capitalize())
+    # eval_dataset = value.get("eval_dataset", None)
+
+    model_name = args.get("model_name", None)
+    if not model_name:
+        raise ValueError("Model name must be specified...")
+
+    default_params = dict(
+        model=None,
+        # train_dataset=train_dataset,
+        # eval_dataset=eval_dataset,
+        loss=None,
+        metric="accuracy",
+        batch_size=16,
+        num_iterations=10,  # The number of text pairs to generate for contrastive learning
+        num_epochs=1,  # The number of epochs to use for constrastive learning
+        learning_rate=0.000_02,
+        column_mapping={"text": "text", "label": "label"}
+    )
+    fit_params = FitServiceArgs(**load_params(args)).to_dict()
+
+    params = {**default_params, **fit_params}
+
+    logger.debug(f"model params:::::::::  {params}")
+
+
+    if not re.search(r'(?i)^[a-z0-9]([a-z0-9_]*[a-z0-9])?$', model_name):
+        raise SanicException('No special characters (except _ in the middle of name) and whitespaces allowed',
+                             status_code=400)
+
+    try:
+        res = fit_model_service(model_name, train_dataset, eval_dataset, params, compute_eval_metrics)
+    except Exception as e:
+        raise e
+
+    return sanic.json(res)
+
+
+@bp.post("/model/evaluate")
+@doc.tag('Loko Model Services')
+@doc.summary("Evaluate a sentence transformer object")
+@doc.description('''
+''')
+@doc.consumes(doc.JsonBody({}), location="body")
+@extract_value_args(file=False)
+async def loko_evaluate_model(value, args):
+    eval_data = value.copy()
+    eval_dataset = get_datasets_format_data(eval_data)
+
+    model_name = args.get("model_name", None)
+    if not model_name:
+        raise ValueError("Model name must be specified...")
+
+    try:
+        res = eval_model_service(model_name, eval_dataset)
+    except Exception as e:
+        raise e
+    return sanic.json(res)
+
+@bp.post("/model/predict")
+@doc.tag('Loko Model Services')
+@doc.summary("Predict a sentence transformer object")
+@doc.description('''
+''')
+@doc.consumes(doc.JsonBody({}), location="body")
+@extract_value_args(file=False)
+async def loko_evaluate_model(value, args):
+    test_data = value
+
+    model_name = args.get("model_name", None)
+    if not model_name:
+        raise ValueError("Model name must be specified...")
+
+    try:
+        res = predict_model_service(model_name, test_data)
+    except Exception as e:
+        raise e
+    return sanic.json(res)
 
 #
 #

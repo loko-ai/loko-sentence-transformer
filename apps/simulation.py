@@ -1,3 +1,5 @@
+import json
+
 import joblib as joblib
 from datasets import load_dataset
 from sentence_transformers.losses import CosineSimilarityLoss
@@ -14,7 +16,9 @@ print("dataset loaded")
 num_classes = 2
 train_dataset = dataset["train"].shuffle(seed=42).select(range(8 * num_classes))
 eval_dataset = dataset["validation"]
+
 print("preprocessing done")
+print(train_dataset.data)
 
 # Load a SetFit model from Hub
 model = SetFitModel.from_pretrained("sentence-transformers/paraphrase-mpnet-base-v2")
@@ -40,17 +44,20 @@ trainer.train()
 # print(model.__dict__)
 joblib.dump(model, "example_model")
 
-#
-# metrics = trainer.evaluate()
-# print(f"metrics::: {metrics}")
-#
-#
-# # Push model to the Hub
-# # trainer.push_to_hub("my-awesome-setfit-model")
-# #ValueError: You must login to the Hugging Face hub on this computer by typing `huggingface-cli login` and entering your credentials to use `use_auth_token=True`. Alternatively, you can pass your own token as the `use_auth_token` argument.
-#
-# # Download from Hub and run inference
-# # model = SetFitModel.from_pretrained("lewtun/my-awesome-setfit-model")
-# # Run inference
-# preds = model(["i loved the spiderman movie!", "pineapple on pizza is the worst 🤮"])
-# print(f"preds:: {preds}")
+
+metrics = trainer.evaluate()
+print(f"metrics::: {metrics}")
+
+
+# Push model to the Hub
+# trainer.push_to_hub("my-awesome-setfit-model")
+#ValueError: You must login to the Hugging Face hub on this computer by typing `huggingface-cli login` and entering your credentials to use `use_auth_token=True`. Alternatively, you can pass your own token as the `use_auth_token` argument.
+
+# Download from Hub and run inference
+# model = SetFitModel.from_pretrained("lewtun/my-awesome-setfit-model")
+# Run inference
+preds = model(["i loved the spiderman movie!", "pineapple on pizza is the worst 🤮"])
+print(f"preds:: {preds}")
+body = [dict(pred=list(preds))]
+print(body)
+es = json.dumps([body])
