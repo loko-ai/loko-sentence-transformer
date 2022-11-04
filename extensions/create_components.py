@@ -18,7 +18,9 @@ is_multilabel = Arg(name="is_multilabel", label="Multilabel", type="boolean", va
 multi_target_strategy = Dynamic(name="multi_target_strategy", label="Multi-Target Strategy", dynamicType="select",
                                 options=["one-vs-rest", "multi-output", "classifier-chain"], parent="is_multilabel", condition="{parent}===true", group=create_group)
 
-create_args = [model_name, pretrained_name, is_multilabel, multi_target_strategy]
+description = Arg(name="description", label="Description", type="area", group=create_group)
+
+create_args = [model_name, pretrained_name, description, is_multilabel, multi_target_strategy]
 ################################# SAVE ARGS ##################################
 fit_group = "Fit Parameters"
 

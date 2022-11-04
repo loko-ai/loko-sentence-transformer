@@ -3,7 +3,7 @@
   "id": "sentence_transformer",
   "description": "Sentence Transformer with SetFit",
   "created_on": "25/10/2022, 13:05:06",
-  "last_modify": "02/11/2022, 17:49:13",
+  "last_modify": "04/11/2022, 12:03:12",
   "graphs": {
     "main": {
       "nodes": [
@@ -103,8 +103,8 @@
         {
           "id": "b9a38859-ca72-404c-8332-a00f58cddc09",
           "position": {
-            "x": 542.8078011716696,
-            "y": 716.0684690422636
+            "x": 480.29952757361536,
+            "y": 715.144442636761
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -192,8 +192,8 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 542.8078011716696,
-            "y": 716.0684690422636
+            "x": 480.29952757361536,
+            "y": 715.144442636761
           },
           "__class__": "Node"
         },
@@ -327,7 +327,8 @@
             "outputs": [
               {
                 "id": "output",
-                "label": "output"
+                "label": "output",
+                "closed": false
               }
             ],
             "configured": true,
@@ -400,8 +401,8 @@
         {
           "id": "150760e4-8e0d-4075-97ea-c9895c7e1fa1",
           "position": {
-            "x": 705.0790053283541,
-            "y": 842.3993342748828
+            "x": 764.2596961339044,
+            "y": 821.5120316376298
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -489,23 +490,23 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 705.0790053283541,
-            "y": 842.3993342748828
+            "x": 764.2596961339044,
+            "y": 821.5120316376298
           },
           "__class__": "Node"
         },
         {
-          "id": "ff53fa0b-9661-4884-b167-2e9a7718c956",
+          "id": "d4c90943-a919-405c-9ff7-1d820bfc1ff0",
           "position": {
-            "x": 1162.1904523014769,
-            "y": 814.0090843016277
+            "x": 1554.695205479452,
+            "y": 808.6027397260274
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
           "sourcePosition": "right",
           "targetPosition": "left",
-          "width": 150,
-          "height": 56,
+          "width": 222,
+          "height": 80,
           "selected": false,
           "dragging": false,
           "data": {
@@ -601,6 +602,16 @@
                   "validation": {
                     "required": "Required field"
                   }
+                },
+                {
+                  "name": "description",
+                  "type": "area",
+                  "label": "Description",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
                 },
                 {
                   "name": "is_multilabel",
@@ -743,6 +754,7 @@
                 "debug": true,
                 "model_name": "first_example",
                 "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+                "description": "example description",
                 "is_multilabel": false,
                 "text_feature": "sentence",
                 "label_feature": "label",
@@ -760,8 +772,984 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 1162.1904523014769,
-            "y": 814.0090843016277
+            "x": 1554.695205479452,
+            "y": 808.6027397260274
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "37df5eec-47b9-4dc7-9481-92429577db72",
+          "position": {
+            "x": 1477.9025748288727,
+            "y": 1470.906443331897
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 222,
+          "height": 80,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "SentenceTransformer",
+            "events": null,
+            "description": "",
+            "inputs": [
+              {
+                "id": "create",
+                "label": "Create Model",
+                "service": "model/create",
+                "to": "create"
+              },
+              {
+                "id": "fit",
+                "label": "Fit",
+                "service": "model/fit",
+                "to": "fit"
+              },
+              {
+                "id": "predict",
+                "label": "Predict",
+                "service": "model/predict",
+                "to": "predict"
+              },
+              {
+                "id": "evaluate",
+                "label": "Evaluate",
+                "service": "model/evaluate",
+                "to": "evaluate"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "create",
+                "label": "Create Model"
+              },
+              {
+                "id": "fit",
+                "label": "Fit"
+              },
+              {
+                "id": "predict",
+                "label": "Predict"
+              },
+              {
+                "id": "evaluate",
+                "label": "Evaluate"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "NLP",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "label": "Model Name",
+                  "helper": "Name to assign to the model",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "pretrained_name",
+                  "type": "text",
+                  "label": "Pretrained Model Name",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": "sentence-transformers/paraphrase-mpnet-base-v2",
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "description",
+                  "type": "area",
+                  "label": "Description",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "is_multilabel",
+                  "type": "boolean",
+                  "label": "Multilabel",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": false,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "multi_target_strategy",
+                  "type": "dynamic",
+                  "label": "Multi-Target Strategy",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "is_multilabel",
+                  "condition": "{parent}===true",
+                  "dynamicType": "select",
+                  "options": [
+                    "one-vs-rest",
+                    "multi-output",
+                    "classifier-chain"
+                  ],
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "text_feature",
+                  "type": "text",
+                  "label": "Textual feature name",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "sentence",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "label_feature",
+                  "type": "text",
+                  "label": "Label feature name",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "label",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "loss",
+                  "type": "select",
+                  "label": "Loss function",
+                  "helper": "Loss function to use, choose between the one of sentence_transformer Python library",
+                  "group": "Fit Parameters",
+                  "value": "CosineSimilarityLoss",
+                  "description": "",
+                  "validation": null,
+                  "options": [
+                    "CosineSimilarityLoss",
+                    "SoftmaxLoss",
+                    "MultipleNegativesRankingLoss",
+                    "MultipleNegativesSymmetricRankingLoss",
+                    "MSELoss",
+                    "MarginMSELoss",
+                    "ContrastiveLoss",
+                    "ContrastiveTensionLoss",
+                    "DenoisingAutoEncoderLoss",
+                    "TripletLoss"
+                  ]
+                },
+                {
+                  "name": "metric",
+                  "type": "text",
+                  "label": "Metric",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "accuracy",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "batch_size",
+                  "type": "number",
+                  "label": "Batch Size",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 16,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "n_iter",
+                  "type": "number",
+                  "label": "Number of iteration",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 10,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "n_epochs",
+                  "type": "number",
+                  "label": "Number of epochs",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 1,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "learning_rate",
+                  "type": "number",
+                  "label": "Learning rate",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 2e-05,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "compute_eval_metrics",
+                  "type": "boolean",
+                  "label": "Compute evaluation metrics",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": false,
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiTreasureMapFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "model_name": "first_example",
+                "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+                "description": "example description",
+                "is_multilabel": false,
+                "text_feature": "sentence",
+                "label_feature": "label",
+                "loss": "CosineSimilarityLoss",
+                "metric": "accuracy",
+                "batch_size": "16",
+                "n_iter": "10",
+                "n_epochs": "1",
+                "learning_rate": "0.00002",
+                "compute_eval_metrics": true
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1477.9025748288727,
+            "y": 1470.906443331897
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "eccf35ab-c3fe-436e-bcf2-8d783bd0339c",
+          "position": {
+            "x": 471.42808219178096,
+            "y": 1586.705479452055
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 189,
+          "height": 104,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "File Reader",
+            "events": null,
+            "description": "### Description\nThe FILE READER component allows the reading of individual files.\n\n### Output\nSetting the **Read Content** parameter to **False**, the output provides the file path in PosixPath format. The component will then need to be connected to other components to read the content, for example *LineReader*.\n\nOn the contrary, setting the **Read Content** parameter to **True**, you can choose whether to read the content in *Binary* format. This format will be selected for reading non-text files.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "files",
+                  "label": "File",
+                  "fragment": "files",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "read_content",
+                  "type": "boolean",
+                  "label": "Read content"
+                },
+                {
+                  "name": "binary",
+                  "type": "dynamic",
+                  "label": "Binary",
+                  "dynamicType": {
+                    "true": "boolean"
+                  },
+                  "parent": "read_content"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFileList3Fill",
+              "values": {
+                "comment": "",
+                "alias": "Evaluation Data",
+                "debug": false,
+                "read_content": true,
+                "value": {
+                  "name": "data_eval.json",
+                  "path": "data/data/data_eval.json",
+                  "parent": "data/data",
+                  "isDir": false,
+                  "hidden": false
+                },
+                "binary": false
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 471.42808219178096,
+            "y": 1586.705479452055
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "6ef909b9-fa1c-4c66-b216-1cf1bd6919cc",
+          "position": {
+            "x": 755.9075342465753,
+            "y": 1607.8390410958905
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 281,
+          "height": 72,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output",
+                "closed": false
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "from string to json object",
+                "debug": false,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "return eval(data)"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 755.9075342465753,
+            "y": 1607.8390410958905
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "620900db-cbdb-4e3d-a634-5f1c3af683e8",
+          "position": {
+            "x": 1153.6251627872032,
+            "y": 1497.5865951202225
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Merge",
+            "events": null,
+            "description": "### Description\nThe MERGE component is used to merge the results of multiple components.\n\n### Input\nThe number of inputs is defined using the parameter *Inputs*.\n\n### Output\nIn output are returned dictionaries that have as keys the Inputs defined at the creation of the component and as values the elements received in input from the connected components.",
+            "inputs": [
+              {
+                "label": "train_dataset",
+                "id": "83ba1b4c-29b0-49c2-b1d3-c2882fa7ec00"
+              },
+              {
+                "label": "eval_dataset",
+                "id": "69801caa-9b59-4272-9349-879df27a63d7"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "inputs",
+                  "label": "Inputs",
+                  "type": "multiKeyValue",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fields": [
+                    {
+                      "name": "label",
+                      "placeholder": "Input",
+                      "validation": {
+                        "required": "Required field"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "click": null,
+              "icon": "RiGitMergeFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "inputs": [
+                  {
+                    "label": "train_dataset",
+                    "id": "83ba1b4c-29b0-49c2-b1d3-c2882fa7ec00"
+                  },
+                  {
+                    "label": "eval_dataset",
+                    "id": "69801caa-9b59-4272-9349-879df27a63d7"
+                  }
+                ]
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1153.6251627872032,
+            "y": 1497.5865951202225
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "024c1c08-879c-46c1-a18a-f435e2da2899",
+          "position": {
+            "x": 26.299527573615364,
+            "y": 1473.1444426367611
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 281,
+          "height": 104,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "comment": "",
+                "alias": "Training Data - FULVIO!!!!",
+                "debug": false,
+                "type": "Object",
+                "value": "{\n  \"idx\": [\n    32326,\n    27449,\n    60108,\n    23141,\n    35226,\n    66852,\n    65093,\n    47847,\n    39440,\n    56428,\n    6798,\n    6824,\n    56503,\n    51288,\n    39024,\n    58847\n  ],\n  \"sentence\": [\n    \"klein , charming in comedies like american pie and dead-on in election , \",\n    \"be fruitful \",\n    \"soulful and \",\n    \"the proud warrior that still lingers in the souls of these characters \",\n    \"covered earlier and much better \",\n    \"wise and powerful \",\n    \"a powerful and reasonably fulfilling gestalt \",\n    \"smart and newfangled \",\n    \"it too is a bomb . \",\n    \"guilty about it \",\n    \"while the importance of being earnest offers opportunities for occasional smiles and chuckles \",\n    \"stevens ' vibrant creative instincts \",\n    \"great artistic significance \",\n    \"what does n't this film have that an impressionable kid could n't stand to hear ? \",\n    \"working from a surprisingly sensitive script co-written by gianni romoli ... \",\n    \"eight crazy nights is a total misfire . \"\n  ],\n  \"label\": [\n    1,\n    1,\n    1,\n    1,\n    0,\n    1,\n    1,\n    1,\n    0,\n    0,\n    1,\n    1,\n    1,\n    1,\n    1,\n    0\n  ]\n}"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 26.299527573615364,
+            "y": 1473.1444426367611
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "2942458d-2b07-48d2-9b4e-6f85d5c9f946",
+          "position": {
+            "x": 463,
+            "y": 1353
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "File Reader",
+            "events": null,
+            "description": "### Description\nThe FILE READER component allows the reading of individual files.\n\n### Output\nSetting the **Read Content** parameter to **False**, the output provides the file path in PosixPath format. The component will then need to be connected to other components to read the content, for example *LineReader*.\n\nOn the contrary, setting the **Read Content** parameter to **True**, you can choose whether to read the content in *Binary* format. This format will be selected for reading non-text files.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "files",
+                  "label": "File",
+                  "fragment": "files",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "read_content",
+                  "type": "boolean",
+                  "label": "Read content"
+                },
+                {
+                  "name": "binary",
+                  "type": "dynamic",
+                  "label": "Binary",
+                  "dynamicType": {
+                    "true": "boolean"
+                  },
+                  "parent": "read_content"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFileList3Fill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "read_content": true,
+                "value": {
+                  "name": "example_data.json",
+                  "path": "data/data/example_data.json",
+                  "parent": "data/data",
+                  "isDir": false,
+                  "hidden": false
+                },
+                "binary": false
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 463,
+            "y": 1353
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "e22361bb-6b20-4fcd-9cc6-3127834f6541",
+          "position": {
+            "x": 699.9075342465753,
+            "y": 1387.8390410958905
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 281,
+          "height": 72,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output",
+                "closed": false
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "from string to json object",
+                "debug": false,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "return eval(data)"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 699.9075342465753,
+            "y": 1387.8390410958905
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "c6bd5b76-95cf-411b-803b-bc75a566c306",
+          "position": {
+            "x": 1013.6675324260059,
+            "y": 1200.2987011833497
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 88,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "type": "String",
+                "value": "Hello world!"
+              }
+            }
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1013.6675324260059,
+            "y": 1200.2987011833497
           },
           "__class__": "Node"
         }
@@ -782,10 +1770,10 @@
           "__class__": "Edge"
         },
         {
-          "id": "reactflow__edge-0c1e3440-95b4-427b-8152-85723ff2df52output-ff53fa0b-9661-4884-b167-2e9a7718c956create",
+          "id": "reactflow__edge-0c1e3440-95b4-427b-8152-85723ff2df52output-d4c90943-a919-405c-9ff7-1d820bfc1ff0create",
           "source": "0c1e3440-95b4-427b-8152-85723ff2df52",
           "sourceHandle": "output",
-          "target": "ff53fa0b-9661-4884-b167-2e9a7718c956",
+          "target": "d4c90943-a919-405c-9ff7-1d820bfc1ff0",
           "targetHandle": "create",
           "data": {
             "startColor": "#D770AD",
@@ -796,10 +1784,10 @@
           "__class__": "Edge"
         },
         {
-          "id": "reactflow__edge-b9a38859-ca72-404c-8332-a00f58cddc09output-ff53fa0b-9661-4884-b167-2e9a7718c956fit",
+          "id": "reactflow__edge-b9a38859-ca72-404c-8332-a00f58cddc09output-d4c90943-a919-405c-9ff7-1d820bfc1ff0fit",
           "source": "b9a38859-ca72-404c-8332-a00f58cddc09",
           "sourceHandle": "output",
-          "target": "ff53fa0b-9661-4884-b167-2e9a7718c956",
+          "target": "d4c90943-a919-405c-9ff7-1d820bfc1ff0",
           "targetHandle": "fit",
           "data": {
             "startColor": "#D770AD",
@@ -810,10 +1798,10 @@
           "__class__": "Edge"
         },
         {
-          "id": "reactflow__edge-150760e4-8e0d-4075-97ea-c9895c7e1fa1output-ff53fa0b-9661-4884-b167-2e9a7718c956predict",
+          "id": "reactflow__edge-150760e4-8e0d-4075-97ea-c9895c7e1fa1output-d4c90943-a919-405c-9ff7-1d820bfc1ff0predict",
           "source": "150760e4-8e0d-4075-97ea-c9895c7e1fa1",
           "sourceHandle": "output",
-          "target": "ff53fa0b-9661-4884-b167-2e9a7718c956",
+          "target": "d4c90943-a919-405c-9ff7-1d820bfc1ff0",
           "targetHandle": "predict",
           "data": {
             "startColor": "#D770AD",
@@ -824,10 +1812,10 @@
           "__class__": "Edge"
         },
         {
-          "id": "reactflow__edge-b7f60493-5ea0-44ed-b5f3-33809c8571d3output-ff53fa0b-9661-4884-b167-2e9a7718c956evaluate",
+          "id": "reactflow__edge-b7f60493-5ea0-44ed-b5f3-33809c8571d3output-d4c90943-a919-405c-9ff7-1d820bfc1ff0evaluate",
           "source": "b7f60493-5ea0-44ed-b5f3-33809c8571d3",
           "sourceHandle": "output",
-          "target": "ff53fa0b-9661-4884-b167-2e9a7718c956",
+          "target": "d4c90943-a919-405c-9ff7-1d820bfc1ff0",
           "targetHandle": "evaluate",
           "data": {
             "startColor": "#D770AD",
@@ -835,6 +1823,116 @@
           },
           "selected": false,
           "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-eccf35ab-c3fe-436e-bcf2-8d783bd0339coutput-6ef909b9-fa1c-4c66-b216-1cf1bd6919ccinput",
+          "source": "eccf35ab-c3fe-436e-bcf2-8d783bd0339c",
+          "sourceHandle": "output",
+          "target": "6ef909b9-fa1c-4c66-b216-1cf1bd6919cc",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-620900db-cbdb-4e3d-a634-5f1c3af683e8output-37df5eec-47b9-4dc7-9481-92429577db72fit",
+          "source": "620900db-cbdb-4e3d-a634-5f1c3af683e8",
+          "sourceHandle": "output",
+          "target": "37df5eec-47b9-4dc7-9481-92429577db72",
+          "targetHandle": "fit",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-024c1c08-879c-46c1-a18a-f435e2da2899output-eccf35ab-c3fe-436e-bcf2-8d783bd0339cinput",
+          "source": "024c1c08-879c-46c1-a18a-f435e2da2899",
+          "sourceHandle": "output",
+          "target": "eccf35ab-c3fe-436e-bcf2-8d783bd0339c",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#F8637A"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-6ef909b9-fa1c-4c66-b216-1cf1bd6919ccoutput-620900db-cbdb-4e3d-a634-5f1c3af683e869801caa-9b59-4272-9349-879df27a63d7",
+          "source": "6ef909b9-fa1c-4c66-b216-1cf1bd6919cc",
+          "sourceHandle": "output",
+          "target": "620900db-cbdb-4e3d-a634-5f1c3af683e8",
+          "targetHandle": "69801caa-9b59-4272-9349-879df27a63d7",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-2942458d-2b07-48d2-9b4e-6f85d5c9f946output-e22361bb-6b20-4fcd-9cc6-3127834f6541input",
+          "source": "2942458d-2b07-48d2-9b4e-6f85d5c9f946",
+          "sourceHandle": "output",
+          "target": "e22361bb-6b20-4fcd-9cc6-3127834f6541",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-024c1c08-879c-46c1-a18a-f435e2da2899output-2942458d-2b07-48d2-9b4e-6f85d5c9f946input",
+          "source": "024c1c08-879c-46c1-a18a-f435e2da2899",
+          "sourceHandle": "output",
+          "target": "2942458d-2b07-48d2-9b4e-6f85d5c9f946",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#F8637A"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-e22361bb-6b20-4fcd-9cc6-3127834f6541output-620900db-cbdb-4e3d-a634-5f1c3af683e883ba1b4c-29b0-49c2-b1d3-c2882fa7ec00",
+          "source": "e22361bb-6b20-4fcd-9cc6-3127834f6541",
+          "sourceHandle": "output",
+          "target": "620900db-cbdb-4e3d-a634-5f1c3af683e8",
+          "targetHandle": "83ba1b4c-29b0-49c2-b1d3-c2882fa7ec00",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-c6bd5b76-95cf-411b-803b-bc75a566c306output-37df5eec-47b9-4dc7-9481-92429577db72create",
+          "source": "c6bd5b76-95cf-411b-803b-bc75a566c306",
+          "sourceHandle": "output",
+          "target": "37df5eec-47b9-4dc7-9481-92429577db72",
+          "targetHandle": "create",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
           "__class__": "Edge"
         }
       ],

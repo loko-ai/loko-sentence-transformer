@@ -1,11 +1,16 @@
 import importlib
 import time
 import json, tempfile
+from pathlib import Path
+from typing import List
+from sanic.exceptions import SanicException
+
 import datasets
 from datasets import Dataset
 
 from business.sentence_transformer_model import SentenceTransformer, LOSS_PATH
 from config.AppConfig import REPO_PATH
+from dao.fs_dao import FileSystemDAO
 from model.model_bp import ModelInfo
 from utils.logger_utils import logger
 from utils.serialization_utils import serialize, deserialize
@@ -25,9 +30,20 @@ def load_params(params):
     return res
 
 
-def create_st_model(model_name, pretrained_name, is_multilabel, multi_target_strategy):
+def get_all() -> List[str]:
+    path = REPO_PATH
+    fsdao = FileSystemDAO(path)
+    return sorted(fsdao.all(files=False))
+
+def check_existence(path:Path):
+    if path.exists():
+        return True
+    else:
+        return False
+
+def create_st_model(model_name, pretrained_name, is_multilabel, multi_target_strategy, description=""):
     model_info = ModelInfo(model_name=model_name, pretrained_name=pretrained_name, is_multilabel=is_multilabel,
-                           multi_target_strategy=multi_target_strategy)
+                           multi_target_strategy=multi_target_strategy, created_on=time.time(), description=description, fitted=False)
     model_info_dict = model_info.to_dict()
     logger.debug(f"blueprint data ----> {model_info_dict}")
 
@@ -54,6 +70,13 @@ def get_datasets_format_data(data):
 def fit_model_service(model_name, train_dataset, eval_dataset, fit_params, compute_eval_metrics):
     model_path = REPO_PATH / model_name
     model_blueprint = deserialize(path=model_path)
+    try:
+        model_blueprint = deserialize(path=model_path)
+
+    except FileNotFoundError as notfound:
+        logger.error("!!!!!! model corrupt !!!!!!")
+        raise SanicException(f"Mredictor '{model_name}' doesn't exists or is corrupt...", status_code=404)
+
     model_info = ModelInfo(**model_blueprint)
     st = SentenceTransformer(model_name=model_name, pretrained_name=model_info.pretrained_name)
     # logger.debug(f"{res}")

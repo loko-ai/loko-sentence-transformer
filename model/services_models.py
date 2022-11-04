@@ -1,7 +1,7 @@
 
 
 class FitServiceArgs():
-    def __init__(self, loss, metric, batch_size, n_iter, n_epochs, text_feature, label_feature, learning_rate, **kwargs):
+    def __init__(self, loss, metric, batch_size, n_iter, n_epochs, text_feature, label_feature, learning_rate, compute_eval_metrics, **kwargs):
         self.label_feature = label_feature
         self.text_feature = text_feature
         self.n_epochs = n_epochs
@@ -10,6 +10,7 @@ class FitServiceArgs():
         self.metric = metric
         self.loss = loss
         self.learning_rate = learning_rate
+        self.compute_eval_metrics = compute_eval_metrics
         self.column_mapping = self._create_column_mapping()
 
 

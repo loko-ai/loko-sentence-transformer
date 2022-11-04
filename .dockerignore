@@ -1,4 +1,7 @@
 venv
 .idea
+!.env
+!.env.production
+**/node_modules
 __pycache__
 example_df

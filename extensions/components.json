@@ -89,6 +89,16 @@
      }
     },
     {
+     "name": "description",
+     "type": "area",
+     "label": "Description",
+     "helper": "",
+     "group": "Create Parameters",
+     "value": null,
+     "description": "",
+     "validation": null
+    },
+    {
      "name": "is_multilabel",
      "type": "boolean",
      "label": "Multilabel",
