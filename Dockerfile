@@ -16,5 +16,6 @@ ARG GATEWAY
 ENV GATEWAY=$GATEWAY
 ADD . /plugin
 ENV PYTHONPATH=$PYTHONPATH:/plugin
+COPY --from=builder /frontend/dist /frontend/dist
 WORKDIR /plugin/services
 CMD python services.py

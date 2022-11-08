@@ -252,6 +252,7 @@ async def loko_fit_model(value, args):
         num_iterations=10,  # The number of text pairs to generate for contrastive learning
         num_epochs=1,  # The number of epochs to use for constrastive learning
         learning_rate=0.000_02,
+        compute_eval_metrics=False,
         column_mapping={"text": "text", "label": "label"}
     )
     fit_params = FitServiceArgs(**load_params(args)).to_dict()
