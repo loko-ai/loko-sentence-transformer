@@ -6,6 +6,7 @@ import { Model } from "./Model";
 import { ModelCreation } from "./ModelCreation";
 import { RiAddFill, RiUploadCloud2Line } from 'react-icons/ri';
 import { ModelDetails } from "./ModelDetails";
+import { saveAs } from 'file-saver';
 
 
 

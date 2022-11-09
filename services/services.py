@@ -57,16 +57,16 @@ async def list_models(request):
     return sanic.json(get_all())
 
 
-@bp.delete("/models/<name>")
+@bp.delete("/models/<model_name>")
 @doc.tag('models')
 @doc.summary("Delete a model object")
-@doc.consumes(doc.String(name="name"), location="path", required=True)
-async def delete_predictor(request, name):
-    name = unquote(name)
+@doc.consumes(doc.String(name="model_name"), location="path", required=True)
+async def delete_predictor(request, model_name):
+    model_name = unquote(model_name)
 
-    path = repo_path / name
+    path = repo_path / model_name
     if not path.exists():
-        raise SanicException(f'Model "{name}" does not exist!', status_code=400)
+        raise SanicException(f'Model "{model_name}" does not exist!', status_code=400)
     # ##TODO: sviluppare questa parte
     # if name in fitting.all('alive'):
     #     dc = fitting.get_by_id(name)['dc']
@@ -89,7 +89,7 @@ async def delete_predictor(request, name):
     # testset_dao.dropcoll()
     # testset_dao.close()
 
-    return sanic.json(f"Model '{name}' deleted")
+    return sanic.json(f"Model '{model_name}' deleted")
 
 
 @bp.post("/models/<model_name>")
@@ -102,13 +102,14 @@ async def delete_predictor(request, name):
 @doc.consumes(doc.String(name="description"), location="query", required=False)
 @doc.consumes(doc.String(name="model_name"), location="path", required=True)
 async def create_model(request, model_name):
+    print(f"name::: {model_name}")
+
     model_name = unquote(model_name)
     default_params = dict(is_multilabel=False,
                           multi_target_strategy=None,
                           description=""
                           )
     model_params = {**default_params, **load_params(request.args)}
-    print(f"params {model_params}")
     # pretrained_model = request.get("pretrained_name")
     # is_multilabel = request.get
 
@@ -119,7 +120,8 @@ async def create_model(request, model_name):
     try:
         create_st_model(model_name=model_name, **model_params)
     except Exception as e:
-        raise e
+        logger.error(f"CREATE MODEL ERROR: {e}")
+        raise SanicException(e)
     return sanic.json(f"Model '{model_name}' saved")
 
 
@@ -150,20 +152,24 @@ async def import_model(request):
     return sanic.json('Model correctly imported')
 
 
-@bp.get("/models/<name>/export")
+@bp.get("/models/<model_name>/export")
 @doc.tag('models')
 @doc.summary('Download existing model')
-@doc.consumes(doc.String(name="name"), location="path", required=True)
-async def export_model(request, name):
-    name = unquote(name)
+@doc.consumes(doc.String(name="model_name"), location="path", required=True)
+async def export_model(request, model_name):
 
-    file_name = name + '.zip'
-    path = repo_path / name
+    model_name = unquote(model_name)
+    print(f"------ {model_name}")
+
+    file_name = model_name + '.zip'
+    path = repo_path / model_name
+    print("qio")
     buffer = io.BytesIO()
+    print("qiuii")
     make_zipfile(buffer, path)
     buffer.seek(0)
     headers = {'Content-Disposition': 'attachment; filename="{}"'.format(file_name)}
-    return sanic.raw(buffer.getvalue(), headers=headers)
+    return sanic.response.raw(buffer.getvalue(), headers=headers)
 
 
 @bp.post("/model/create")

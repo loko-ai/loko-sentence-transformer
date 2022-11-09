@@ -69,15 +69,17 @@ def get_datasets_format_data(data):
 
 def fit_model_service(model_name, train_dataset, eval_dataset, fit_params, compute_eval_metrics):
     model_path = REPO_PATH / model_name
-    model_blueprint = deserialize(path=model_path)
     try:
         model_blueprint = deserialize(path=model_path)
 
     except FileNotFoundError as notfound:
         logger.error("!!!!!! model corrupt !!!!!!")
         raise SanicException(f"Mredictor '{model_name}' doesn't exists or is corrupt...", status_code=404)
+    model_blueprint["fitted"] = "Fitting"
+    serialize(model_path, model_blueprint)
 
     model_info = ModelInfo(**model_blueprint)
+
     st = SentenceTransformer(model_name=model_name, pretrained_name=model_info.pretrained_name)
     # logger.debug(f"{res}")
     module = importlib.import_module(LOSS_PATH +fit_params["loss"])

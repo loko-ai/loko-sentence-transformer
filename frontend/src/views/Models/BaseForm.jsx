@@ -9,6 +9,7 @@ export function BaseForm({ onSubmit }) {
     is_multilabel: false,
     multi_target_strategy: ""
   });
+
   return (
     <Stack>
       <Text fontSize="xs">
@@ -21,13 +22,10 @@ export function BaseForm({ onSubmit }) {
         value={state.name}
         onChange={(e) => (state.name = e.target.value)}
         type="text"
+        isInvalid={state.name === ""}
       />
-
       <Text fontSize="xs">
         Description
-        {/* <Box as="span" color="red">
-          *
-        </Box> */}
       </Text>
       <Textarea
         rows={2}
@@ -52,6 +50,9 @@ export function BaseForm({ onSubmit }) {
         value={state.is_multilabel}
         onChange={(e) => (state.is_multilabel = e.target.value)}
         type="boolean"
+    
+        // {<option key={true}>True</option>
+        // <option key={false}>False</option>}
       />
       <Text fontSize="xs">
         Multi-Target Strategy
@@ -62,7 +63,7 @@ export function BaseForm({ onSubmit }) {
         type="text"
       />
 
-      <Button onClick={(e) => onSubmit(state.name, state.bp)}>Create</Button>
+      <Button onClick={(e) => onSubmit(state.name, state.description, state.pretrained_name, state.is_multilabel, state.multi_target_strategy)}>Create</Button>
     </Stack>
   );
 }

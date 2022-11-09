@@ -29,11 +29,14 @@ export function ModelCreation({ onClose }) {
           <TabPanel>Manual</TabPanel> */}
           <TabPanel>
             <BaseForm
-              onSubmit={(name, data) => {
+              onSubmit={(name, description, pretrained_name, is_multilabel, multi_target_strategy) => {
                 console.log("Name", name);
-                console.log("DATA:::", data);
-                CLIENT.models[name]
-                  .post(data)
+                console.log("description:: ", description);
+                console.log("is multi?? ", is_multilabel);
+                CLIENT.models[name] 
+                  .post(null, {
+                    params: { description, pretrained_name, is_multilabel, multi_target_strategy },
+                  })
                   .then((resp) => (_state.refresh = new Date()));
                 onClose();
               }}
