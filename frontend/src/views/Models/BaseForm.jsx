@@ -1,4 +1,4 @@
-import { Box, Button, Input, Stack, Text, Textarea } from "@chakra-ui/react";
+import { Box, Button, Input, Select, Stack, Text, Textarea } from "@chakra-ui/react";
 import { useCompositeState } from "ds4biz-core";
 
 export function BaseForm({ onSubmit }) {
@@ -46,14 +46,25 @@ export function BaseForm({ onSubmit }) {
       <Text fontSize="xs">
         Multilabel
       </Text>
-      <Input
+      <Select
+        // option={[{varlue:true, label:"true"},{varlue:false, label:"false"} ]}
+        // value={state.model_id}
+        onChange={(e) => (state.is_multilabel = e.target.value)}
+        type="boolean"
+        defaultValue={false}
+
+      >
+        <option value={true}>true</option>
+        <option value={false}>false</option>
+      </Select>
+      {/* <Input
         value={state.is_multilabel}
         onChange={(e) => (state.is_multilabel = e.target.value)}
         type="boolean"
     
         // {<option key={true}>True</option>
         // <option key={false}>False</option>}
-      />
+      /> */}
       <Text fontSize="xs">
         Multi-Target Strategy
       </Text>
