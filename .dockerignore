@@ -3,5 +3,10 @@ venv
 !.env
 !.env.production
 **/node_modules
+.*
+!.env.*
+!.gitignore
+!.dockerignore
 __pycache__
-example_df
+*.pyc
+dist

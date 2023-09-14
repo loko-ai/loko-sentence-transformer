@@ -1,3 +1,4 @@
+gradio
 joblib
 loko-extensions
 sanic == 22.6.2
@@ -5,3 +6,4 @@ sanic_cors
 sanic_openapi
 sentence_transformers
 setfit
+websockets

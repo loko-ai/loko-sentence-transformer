@@ -3,7 +3,7 @@
   "id": "sentence_transformer",
   "description": "Sentence Transformer with SetFit",
   "created_on": "25/10/2022, 13:05:06",
-  "last_modify": "04/11/2022, 12:03:12",
+  "last_modify": "25/05/2023, 07:29:13",
   "graphs": {
     "main": {
       "nodes": [
@@ -87,10 +87,14 @@
               "click": "Send message",
               "icon": "RiPlayFill",
               "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
                 "type": "String",
                 "value": "Hello world!"
               }
-            }
+            },
+            "locked": null
           },
           "selectable": true,
           "draggable": true,
@@ -1462,7 +1466,7 @@
         {
           "id": "2942458d-2b07-48d2-9b4e-6f85d5c9f946",
           "position": {
-            "x": 463,
+            "x": 467,
             "y": 1353
           },
           "type": "custom",
@@ -1540,7 +1544,7 @@
               "values": {
                 "comment": "",
                 "alias": "",
-                "debug": false,
+                "debug": true,
                 "read_content": true,
                 "value": {
                   "name": "example_data.json",
@@ -1557,7 +1561,7 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 463,
+            "x": 467,
             "y": 1353
           },
           "__class__": "Node"
@@ -1566,7 +1570,7 @@
           "id": "e22361bb-6b20-4fcd-9cc6-3127834f6541",
           "position": {
             "x": 699.9075342465753,
-            "y": 1387.8390410958905
+            "y": 1389.8390410958905
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -1583,7 +1587,8 @@
             "inputs": [
               {
                 "id": "input",
-                "label": "input"
+                "label": "input",
+                "closed": false
               }
             ],
             "outputs": [
@@ -1656,7 +1661,7 @@
           "draggable": true,
           "positionAbsolute": {
             "x": 699.9075342465753,
-            "y": 1387.8390410958905
+            "y": 1389.8390410958905
           },
           "__class__": "Node"
         },
@@ -1933,6 +1938,1811 @@
             "startColor": "#D770AD",
             "stopColor": "#888"
           },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        }
+      ],
+      "__class__": "Graph"
+    },
+    "example_eml": {
+      "nodes": [
+        {
+          "id": "d1231a14-f508-43ce-8cd1-44a68b532d25",
+          "position": {
+            "x": 873.6910842374731,
+            "y": 103.43315995070546
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "File Reader",
+            "events": null,
+            "description": "### Description\nThe FILE READER component allows the reading of individual files.\n\n### Output\nSetting the **Read Content** parameter to **False**, the output provides the file path in PosixPath format. The component will then need to be connected to other components to read the content, for example *LineReader*.\n\nOn the contrary, setting the **Read Content** parameter to **True**, you can choose whether to read the content in *Binary* format. This format will be selected for reading non-text files.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "files",
+                  "label": "File",
+                  "fragment": "files",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "read_content",
+                  "type": "boolean",
+                  "label": "Read content"
+                },
+                {
+                  "name": "binary",
+                  "type": "dynamic",
+                  "label": "Binary",
+                  "dynamicType": {
+                    "true": "boolean"
+                  },
+                  "parent": "read_content"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFileList3Fill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "read_content": false,
+                "value": {
+                  "name": "email_63fe1b41d5e016f1c53e0678.eml",
+                  "path": "data/data/mic_eml/mic/email_63fe1b41d5e016f1c53e0678.eml",
+                  "parent": "data/data/mic_eml/mic",
+                  "isDir": false,
+                  "hidden": false
+                }
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 873.6910842374731,
+            "y": 103.43315995070546
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "1b1eedfa-6b32-4819-940c-4bff4a672678",
+          "position": {
+            "x": 901,
+            "y": 362
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "pname": "loko-textractor",
+            "name": "Textract",
+            "events": null,
+            "description": "### Description\nThe TEXTRACT component allows you to use OCR technologies to extract textual content - from machine-readable documents - images or mixed content. One of TEXTRACT's embedded technologies is Tesseract 4, which offers the possibility to improve the process of recognition of characters and words through the use of an LSTM neural network (as default). If you want, you can also create your own settings and modify both the OCR engine and the pre-processing that must be applied to the input files.\n\n### Input\n\n\nTEXTRACT has three different input:\n- OCR Extraction\n- Settings\n- Delete Settings\n\n**OCR Extraction:** generally, a FileReader component must be linked to this input, and the service will directly extract the text from the input file. You can decide if you want a plain text (\"plain/text\") or in a json format(\u201capplication/json\u201d) which will treat separately each page, by selecting in the **\u201cAccept\u201d** field the formats which suits you the most: this parameter changes your output type. Accepted file extension: jpeg, docx, pdf, txt, jpg, png, eml.\n\n\n**Settings:** a trigger must be linked to this input, and using the designed parameters it's possible to create an analyzer or a pre-processing setting. The analyzer will change the OCR parameter,  whilst the pre-processing will change the way in which the file will be \"seen\" by the OCR engine. Once a setting is created, in order to be used in an extraction you need to specify it in the OCR Extraction parameters.\n\n\n**Delete Settings:** if you want to delete an already created settings you can link a trigger to this input and specify which settings you want to delete. Warning: this action is permanent.\n\n\n\n### Output\nThe output of the extraction service is a json composed of the key\u201c text \u201dand the text extracted from the submitted document as a value.\n\n**OCR Extraction:** the output of this service depends on the type of \u201caccept\u201d chosen: \n\n\n\n- In case *\u201cplain/text\u201d* is chosen, the output will be a json composed of the key \u201cpath\u201d, which as value will have the path of the examined file, and the key \"text\"  which will contain the text extracted from the submitted document. You can see an example below:\n\n\n```json\n{\"path\": \"path/to_the/file.extension\"\n\"text\": \"Lorem ipsum Lorem ipsum\"}\n```\n\n- If instead you selected *\u201capplication/json\u201d* as accepted value, your output will have the key \u201cpath\u201d, with the path of the examined file as value, and the key \u201ccontent\u201d which will have as value a list of two keys (\u201cpage\u201d and \u201ctext\u201d) for each page present in the document examined. The \u201cpage\u201d key will have as value an integer number, representing the position (the numeration starts from 0),  and the \u201ctext\u201d key the extracted text for the relative page. Here an example:\n\n```json\n{ \"path\": \"path/to_the/file.extension\"\n\"content\": [{\"page\": 0, \n            \"text\": \"Lorem ipsum Lorem ipsum\"},\n            {\"page\": 1, \n             \"text\": \"Lorem ipsum Lorem ipsum\"},\n            {\"page\": 2, \n             \"text\": \"Lorem ipsum Lorem ipsum\"}]\n}\n```\n\n\n**Settings:** this output will only be a message which declares the setting creation.\n\n\n\n**Delete Settings:** this output will only be a message which declares the setting creation. \n\n\n",
+            "inputs": [
+              {
+                "id": "ocr_extraction",
+                "label": "ocr_extraction",
+                "service": "loko_extract",
+                "to": "ocr_extraction",
+                "closed": false
+              },
+              {
+                "id": "hocr_extraction",
+                "label": "hocr_extraction",
+                "service": "loko_hocr",
+                "to": "hocr_extraction"
+              },
+              {
+                "id": "settings",
+                "label": "settings",
+                "service": "loko_settings",
+                "to": "settings"
+              },
+              {
+                "id": "delete_settings",
+                "label": "delete_settings",
+                "service": "loko_delete_settings",
+                "to": "delete_settings"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "ocr_extraction",
+                "label": "ocr_extraction"
+              },
+              {
+                "id": "hocr_extraction",
+                "label": "hocr_extraction"
+              },
+              {
+                "id": "settings",
+                "label": "settings"
+              },
+              {
+                "id": "delete_settings",
+                "label": "delete_settings"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Custom",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "force_ocr",
+                  "type": "boolean",
+                  "label": "Force OCR",
+                  "helper": "",
+                  "group": "OCR Extraction",
+                  "value": false,
+                  "description": "If True, even if the document is machine readable the OCR engine will be used",
+                  "validation": null
+                },
+                {
+                  "name": "analyzer",
+                  "type": "asyncSelect",
+                  "label": "Analyzer",
+                  "helper": "Select an analyzer, if not set the default analyzer settings will be used",
+                  "group": "OCR Extraction",
+                  "value": null,
+                  "description": "An analyzer object is compose of different configurations to run the tesseract engine",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko-textractor/ds4biz/textract/0.1/analyzer"
+                },
+                {
+                  "name": "preprocessing",
+                  "type": "asyncSelect",
+                  "label": "Preprocessing",
+                  "helper": "Select a preprocessing, if not set no pre-processing will be done",
+                  "group": "OCR Extraction",
+                  "value": null,
+                  "description": "A preprocessing object is compose of different configurations to prepare the input image",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko-textractor/ds4biz/textract/0.1/preprocessing"
+                },
+                {
+                  "name": "accept",
+                  "type": "select",
+                  "label": "Accept",
+                  "helper": "Select an output format, default='plain/text'",
+                  "group": "OCR Extraction",
+                  "value": "application/json",
+                  "description": "format and content type of the output",
+                  "validation": null,
+                  "options": [
+                    "application/json",
+                    "plain/text",
+                    "application/jsonl"
+                  ]
+                },
+                {
+                  "name": "settings_type",
+                  "type": "select",
+                  "label": "Settings Type",
+                  "helper": "Select configuration type",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "You can choose between Analyzer or Preprocessing object in order to create a new custom configuration",
+                  "validation": null,
+                  "options": [
+                    "Analyzer",
+                    "Pre-Processing"
+                  ]
+                },
+                {
+                  "name": "new_analyzer_name",
+                  "type": "dynamic",
+                  "label": "Name",
+                  "helper": "Name of the new analyzer",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "text",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "oem_type",
+                  "type": "dynamic",
+                  "label": "OEM",
+                  "helper": "OCR Engine Mode to use ",
+                  "group": "Custom Settings",
+                  "value": "1: neural nets LSTM engine only",
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "select",
+                  "options": [
+                    "0: legacy engine only",
+                    "1: neural nets LSTM engine only",
+                    "2: legacy + LSTM engines",
+                    "3: default, based on what is available"
+                  ],
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "psm_type",
+                  "type": "dynamic",
+                  "label": "PSM",
+                  "helper": "Page Segmentation Mode to use",
+                  "group": "Custom Settings",
+                  "value": "1: automatic page segmentation with OSD",
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "select",
+                  "options": [
+                    "0: orientation and script detection (OSD) only",
+                    "1: automatic page segmentation with OSD",
+                    "2: automatic page segmentation, but no OSD, or OCR",
+                    "3: fully automatic page segmentation, but no OSD",
+                    "4: assume a single column of text of variable sizes",
+                    "5: assume a single uniform block of vertically aligned text",
+                    "6: assume a single uniform block of text",
+                    "7: treat the image as a single text line",
+                    "8: treat the image as a single word",
+                    "9: treat the image as a single word in a circle",
+                    "10: treat the image as a single character",
+                    "11: sparse text. Find as much text as possible in no particular order",
+                    "12: sparse text with OSD",
+                    "13: raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific"
+                  ],
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "lang",
+                  "type": "dynamic",
+                  "label": "Language",
+                  "helper": "If auto the language will be detected, otherwise you can select italian or english.",
+                  "group": "Custom Settings",
+                  "value": "auto",
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "select",
+                  "options": [
+                    "auto",
+                    "ita",
+                    "eng"
+                  ],
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "whitelist",
+                  "type": "dynamic",
+                  "label": "Character Whitelist ",
+                  "helper": "Inser characters",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "The only characters that the OCR engine is allowed to recognize. All the characters must be write without separator",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "text",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "blacklist",
+                  "type": "dynamic",
+                  "label": "Character Blacklist ",
+                  "helper": "Inser characters",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "Characters that must never be included in the results. All the characters must be write without separator",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "text",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "vocab_file",
+                  "type": "dynamic",
+                  "label": "Vocabulary File Name",
+                  "helper": "Select the vocabulary file",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "vocabulary file list of tokens that helps the token recognition process",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "files",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "patterns_file",
+                  "type": "dynamic",
+                  "label": "Patterns File Name",
+                  "helper": "Select the patterns file",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "Patterns file that helps the token recognition process",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Analyzer\"",
+                  "dynamicType": "files",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "new_preprocessing_name",
+                  "type": "dynamic",
+                  "label": "Name",
+                  "helper": "Name of the pre-processing custom settings",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Pre-Processing\"",
+                  "dynamicType": "text",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "dpi",
+                  "type": "dynamic",
+                  "label": "DPI",
+                  "helper": "DPI value to use when processing files",
+                  "group": "Custom Settings",
+                  "value": "200",
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Pre-Processing\"",
+                  "dynamicType": "number",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "zoom",
+                  "type": "dynamic",
+                  "label": "Apply Zoom",
+                  "helper": "",
+                  "group": "Custom Settings",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "settings_type",
+                  "condition": "{parent}===\"Pre-Processing\"",
+                  "dynamicType": "boolean",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "zoom_level",
+                  "type": "dynamic",
+                  "label": "Zoom Level",
+                  "helper": "If the zoom rate level is set to a lower value than 1.0 the image will be shrinked, otherwise the image will be enlarged",
+                  "group": "Custom Settings",
+                  "value": "1.3",
+                  "description": "",
+                  "validation": null,
+                  "parent": "zoom",
+                  "condition": "{parent}===true",
+                  "dynamicType": "number",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "interpolation_mode",
+                  "type": "dynamic",
+                  "label": "Interpolation Mode",
+                  "helper": "Interpolation algorithm",
+                  "group": "Custom Settings",
+                  "value": "1: INTER_LINEAR",
+                  "description": "In case of Zoom-In the image will generally look best with INTER_CUBIC mode (slow) or INTER_LINEAR (faster but still looks good); In case of Zoom-Out the mode INTER_AREA generally works better",
+                  "validation": null,
+                  "parent": "zoom",
+                  "condition": "{parent}===true",
+                  "dynamicType": "select",
+                  "options": [
+                    "0: INTER_NEAREST",
+                    "1: INTER_LINEAR",
+                    "2: INTER_CUBIC",
+                    "3: INTER_AREA",
+                    "4: INTER_LANCZOS4",
+                    "7: INTER_MAX",
+                    "8: WARP_FILL_OUTLIERS",
+                    "16: WARP_INVERSE_MAP"
+                  ],
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "analyzer_name_delete",
+                  "type": "asyncSelect",
+                  "label": "Analyzer Settings Name",
+                  "helper": "Name of the custom settings you want to delete",
+                  "group": "Delete Settings",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko-textractor/ds4biz/textract/0.1/analyzer"
+                },
+                {
+                  "name": "preproc_name_delete",
+                  "type": "asyncSelect",
+                  "label": "Pre-Processing Settings Name",
+                  "helper": "Name of the custom settings you want to delete",
+                  "group": "Delete Settings",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko-textractor/ds4biz/textract/0.1/preprocessing"
+                },
+                {
+                  "name": "accept_hocr",
+                  "type": "select",
+                  "label": "Accept",
+                  "helper": "Select an output format, default='application/json'",
+                  "group": "HOCR Extraction",
+                  "value": "application/json",
+                  "description": "format and content type of the output",
+                  "validation": null,
+                  "options": [
+                    "application/json",
+                    "text/html"
+                  ]
+                }
+              ],
+              "click": null,
+              "icon": "RiBubbleChartLine",
+              "values": {
+                "accept": "application/json",
+                "oem_type": "1: neural nets LSTM engine only",
+                "psm_type": "1: automatic page segmentation with OSD",
+                "lang": "auto",
+                "dpi": "200",
+                "zoom_level": "1.3",
+                "interpolation_mode": "1: INTER_LINEAR",
+                "accept_hocr": "application/json",
+                "debug": false
+              }
+            }
+          },
+          "selectable": true,
+          "draggable": true,
+          "__class__": "Node"
+        },
+        {
+          "id": "aa9b36b7-2b1c-460c-b76f-7896bf339048",
+          "position": {
+            "x": 1019,
+            "y": 260
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "from pathlib import Path\np = Path(data)\nreturn p.parent.name"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1019,
+            "y": 260
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "681c430d-a7c9-484b-a84d-93e328cdd025",
+          "position": {
+            "x": 1717,
+            "y": 298
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Merge",
+            "events": null,
+            "description": "### Description\nThe MERGE component is used to merge the results of multiple components.\n\n### Input\nThe number of inputs is defined using the parameter *Inputs*.\n\n### Output\nIn output are returned dictionaries that have as keys the Inputs defined at the creation of the component and as values the elements received in input from the connected components.",
+            "inputs": [
+              {
+                "label": "label",
+                "id": "ea0be326-0c56-40c7-b9df-525cb76ce4b3",
+                "closed": false
+              },
+              {
+                "label": "text",
+                "id": "254a40b8-1911-4b83-b8de-3d757f8417af",
+                "closed": false
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "inputs",
+                  "label": "Inputs",
+                  "type": "multiKeyValue",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fields": [
+                    {
+                      "name": "label",
+                      "placeholder": "Input",
+                      "validation": {
+                        "required": "Required field"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "click": null,
+              "icon": "RiGitMergeFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "inputs": [
+                  {
+                    "label": "label",
+                    "id": "ea0be326-0c56-40c7-b9df-525cb76ce4b3"
+                  },
+                  {
+                    "label": "text",
+                    "id": "254a40b8-1911-4b83-b8de-3d757f8417af"
+                  }
+                ]
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1717,
+            "y": 298
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "e25e1d64-5d30-4c46-8fe0-30388bae2f30",
+          "position": {
+            "x": 1133,
+            "y": 443
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Selector",
+            "events": null,
+            "description": "### Description\nThe SELECTOR component is used to select the value of one or more object keys. The required key/s are defined using the parameter **Keys**.\n\nIn order to add other keys you need to click on the **\"Add field\"** button.\n\nIf the field **Ignore Error** is toggled, missing keys are ignored.\n\nIt's also possible to select nested key, just by writing them in a *key* field, and seperating them using a full stop. Let's consider the object in the example below: if you want to have access to the content of the \"key3\" object, you need to use the following notation \"key1.key2.key3\".\n\n\n```json\n {\"key1\":{\"key2\":{\"key3\":[\"val1\", \"val2\", \"val3\"]}}} \n```\n\n\n\n### Input\n\nThe input consists of a dictionary.\n\n\n\n### Output\n\nThe output is the value of the required key of the dictionary received as input, if only one key is selected; otherwise it's an object which contains the keys specified and their value.\n",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "ignore_err",
+                  "label": "Ignor Error",
+                  "type": "boolean",
+                  "description": "Choose whether to ignore error in case of a missing key or not"
+                },
+                {
+                  "name": "exclude",
+                  "label": "Exclude Keys",
+                  "type": "boolean",
+                  "description": "If enabled, the output contains the whole input object excluding the specified keys; otherwise, only the specified keys are returned"
+                },
+                {
+                  "name": "keys",
+                  "label": "Keys",
+                  "type": "multiKeyValue",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "description": "Name of the key/s to select from the incoming message",
+                  "fields": [
+                    {
+                      "name": "k",
+                      "placeholder": "key",
+                      "validation": {
+                        "required": "Required field"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "click": null,
+              "icon": "RiCursorFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "ignore_err": true,
+                "exclude": false,
+                "keys": [
+                  {
+                    "k": "body_parts",
+                    "id": "4655e8df-f013-4e3f-a4e0-86ed14a43ef5"
+                  },
+                  {
+                    "k": "attachments",
+                    "id": "208197b9-a6b8-4e35-aeb0-e990b41e24e1"
+                  }
+                ]
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1133,
+            "y": 443
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "c226e79a-f75b-4fd8-ac7f-7634724e46e1",
+          "position": {
+            "x": 1514,
+            "y": 483.4932023885501
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "data[\"body_parts\"] = \"/n/n/n\".join([el[\"content\"] for el in data[\"body_parts\"] if el[\"content_type\"]==\"text/plain\"])\ndata[\"attachments\"] = \"/n/n/n\".join([content for name, content in data[\"attachments\"].items()]) \nres = data[\"body_parts\"] + \"/n/n/n\" + data[\"attachments\"]\nreturn res"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1514,
+            "y": 483.4932023885501
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "fbc1b25d-e9cb-4ec4-8f3c-01ad4dc95bf9",
+          "position": {
+            "x": 534.398035828253,
+            "y": 319.4486423556871
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 197,
+          "height": 88,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Directory Reader",
+            "events": null,
+            "description": "### Description\nThe DIRECTORY READER component allows reading files contained in a folder.\n\n### Output\nThe output provides the path to the files of interest in PosixPath format. You can set **recursive** parameter to True in order to recursively read all folders contained into the main path. Finally, the **suffixes** parameter is used to filter files by extension (e.g. csv, txt, pdf).",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "directories",
+                  "fragment": "files",
+                  "validation": {
+                    "required": "Select at least one directory"
+                  }
+                },
+                {
+                  "name": "recursive",
+                  "type": "boolean"
+                },
+                {
+                  "name": "suffixes",
+                  "type": "text",
+                  "group": "Advanced settings"
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end",
+                  "group": "Advanced settings"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFolder3Fill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "recursive": true,
+                "suffixes": "eml",
+                "propagate": true,
+                "value": {
+                  "name": "sample",
+                  "path": "data/data/mic_eml/sample",
+                  "parent": "data/data/mic_eml",
+                  "isDir": true,
+                  "hidden": false
+                }
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 534.398035828253,
+            "y": 319.4486423556871
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "8e68da3a-3043-44e3-8bb6-9b24b352a872",
+          "position": {
+            "x": 2647.183786989652,
+            "y": 302.22781857449036
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 222,
+          "height": 80,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "SentenceTransformer",
+            "events": null,
+            "description": "",
+            "inputs": [
+              {
+                "id": "create",
+                "label": "Create Model",
+                "service": "model/create",
+                "to": "create"
+              },
+              {
+                "id": "fit",
+                "label": "Fit",
+                "service": "model/fit",
+                "to": "fit",
+                "closed": false
+              },
+              {
+                "id": "predict",
+                "label": "Predict",
+                "service": "model/predict",
+                "to": "predict"
+              },
+              {
+                "id": "evaluate",
+                "label": "Evaluate",
+                "service": "model/evaluate",
+                "to": "evaluate"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "create",
+                "label": "Create Model"
+              },
+              {
+                "id": "fit",
+                "label": "Fit"
+              },
+              {
+                "id": "predict",
+                "label": "Predict"
+              },
+              {
+                "id": "evaluate",
+                "label": "Evaluate"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "NLP",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "model_name",
+                  "type": "text",
+                  "label": "Model Name",
+                  "helper": "Name to assign to the model",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "pretrained_name",
+                  "type": "text",
+                  "label": "Pretrained Model Name",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": "sentence-transformers/paraphrase-mpnet-base-v2",
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                },
+                {
+                  "name": "description",
+                  "type": "area",
+                  "label": "Description",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "is_multilabel",
+                  "type": "boolean",
+                  "label": "Multilabel",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": false,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "multi_target_strategy",
+                  "type": "dynamic",
+                  "label": "Multi-Target Strategy",
+                  "helper": "",
+                  "group": "Create Parameters",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "parent": "is_multilabel",
+                  "condition": "{parent}===true",
+                  "dynamicType": "select",
+                  "options": [
+                    "one-vs-rest",
+                    "multi-output",
+                    "classifier-chain"
+                  ],
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "text_feature",
+                  "type": "text",
+                  "label": "Textual feature name",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "sentence",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "label_feature",
+                  "type": "text",
+                  "label": "Label feature name",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "label",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "loss",
+                  "type": "select",
+                  "label": "Loss function",
+                  "helper": "Loss function to use, choose between the one of sentence_transformer Python library",
+                  "group": "Fit Parameters",
+                  "value": "CosineSimilarityLoss",
+                  "description": "",
+                  "validation": null,
+                  "options": [
+                    "CosineSimilarityLoss",
+                    "SoftmaxLoss",
+                    "MultipleNegativesRankingLoss",
+                    "MultipleNegativesSymmetricRankingLoss",
+                    "MSELoss",
+                    "MarginMSELoss",
+                    "ContrastiveLoss",
+                    "ContrastiveTensionLoss",
+                    "DenoisingAutoEncoderLoss",
+                    "TripletLoss"
+                  ]
+                },
+                {
+                  "name": "metric",
+                  "type": "text",
+                  "label": "Metric",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": "accuracy",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "batch_size",
+                  "type": "number",
+                  "label": "Batch Size",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 16,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "n_iter",
+                  "type": "number",
+                  "label": "Number of iteration",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 10,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "n_epochs",
+                  "type": "number",
+                  "label": "Number of epochs",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 1,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "learning_rate",
+                  "type": "number",
+                  "label": "Learning rate",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": 2e-05,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "compute_eval_metrics",
+                  "type": "boolean",
+                  "label": "Compute evaluation metrics",
+                  "helper": "",
+                  "group": "Fit Parameters",
+                  "value": false,
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiTreasureMapFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "model_name": "mic_pred",
+                "pretrained_name": "sentence-transformers/paraphrase-mpnet-base-v2",
+                "description": "",
+                "is_multilabel": false,
+                "text_feature": "sentence",
+                "label_feature": "label",
+                "loss": "CosineSimilarityLoss",
+                "metric": "accuracy",
+                "batch_size": "8",
+                "n_iter": "10",
+                "n_epochs": "3",
+                "learning_rate": "0.00002",
+                "compute_eval_metrics": false
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 2647.183786989652,
+            "y": 302.22781857449036
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "e8e8003d-d426-40e2-a189-b01b97578230",
+          "position": {
+            "x": 2021,
+            "y": 298
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 80,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "pname": "mongo_extension",
+            "name": "MongoDB",
+            "events": null,
+            "description": "",
+            "inputs": [
+              {
+                "id": "insert",
+                "label": "insert",
+                "service": "",
+                "to": "output"
+              },
+              {
+                "id": "query",
+                "label": "query",
+                "service": "query",
+                "to": "query_output"
+              },
+              {
+                "id": "list",
+                "label": "list",
+                "service": "list",
+                "to": "list_output"
+              },
+              {
+                "id": "delete",
+                "label": "delete",
+                "service": "delete",
+                "to": "delete_output"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              },
+              {
+                "id": "query_output",
+                "label": "query_output"
+              },
+              {
+                "id": "list_output",
+                "label": "list_output"
+              },
+              {
+                "id": "delete_output",
+                "label": "delete_output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Custom",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "collection",
+                  "type": "text",
+                  "label": "Collection name",
+                  "helper": "Specify the mongo collection name"
+                },
+                {
+                  "name": "stream",
+                  "type": "boolean",
+                  "label": "Stream or not results",
+                  "helper": "Stream "
+                }
+              ],
+              "click": null,
+              "icon": null,
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "collection": "training_mic",
+                "stream": false
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 2021,
+            "y": 298
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "5e4a6506-2c5e-42d7-9745-5a0d30d5d201",
+          "position": {
+            "x": 1841,
+            "y": 463
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 88,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "type": "Object",
+                "value": "{}"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1841,
+            "y": 463
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "e073bc9b-762b-47e6-bc1a-0f5645575635",
+          "position": {
+            "x": 2335,
+            "y": 284
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "# res= dict(train_dataset=dict(idx=[], label )) \nlabels = []\nsentences = []\nidxs = []\nfor el in data[\"data\"]:\n  labels.append(el[\"label\"])\n  sentences.append(el[\"text\"])\n  idxs.append(el[\"_id\"])\n\nres=dict(idx=idxs, label=labels, sentence=sentences)\n\n  \n\n  \nreturn res"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 2335,
+            "y": 284
+          },
+          "__class__": "Node"
+        }
+      ],
+      "edges": [
+        {
+          "id": "reactflow__edge-aa9b36b7-2b1c-460c-b76f-7896bf339048output-681c430d-a7c9-484b-a84d-93e328cdd025ea0be326-0c56-40c7-b9df-525cb76ce4b3",
+          "source": "aa9b36b7-2b1c-460c-b76f-7896bf339048",
+          "sourceHandle": "output",
+          "target": "681c430d-a7c9-484b-a84d-93e328cdd025",
+          "targetHandle": "ea0be326-0c56-40c7-b9df-525cb76ce4b3",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-1b1eedfa-6b32-4819-940c-4bff4a672678ocr_extraction-e25e1d64-5d30-4c46-8fe0-30388bae2f30input",
+          "source": "1b1eedfa-6b32-4819-940c-4bff4a672678",
+          "sourceHandle": "ocr_extraction",
+          "target": "e25e1d64-5d30-4c46-8fe0-30388bae2f30",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#888",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-e25e1d64-5d30-4c46-8fe0-30388bae2f30output-c226e79a-f75b-4fd8-ac7f-7634724e46e1input",
+          "source": "e25e1d64-5d30-4c46-8fe0-30388bae2f30",
+          "sourceHandle": "output",
+          "target": "c226e79a-f75b-4fd8-ac7f-7634724e46e1",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-c226e79a-f75b-4fd8-ac7f-7634724e46e1output-681c430d-a7c9-484b-a84d-93e328cdd025254a40b8-1911-4b83-b8de-3d757f8417af",
+          "source": "c226e79a-f75b-4fd8-ac7f-7634724e46e1",
+          "sourceHandle": "output",
+          "target": "681c430d-a7c9-484b-a84d-93e328cdd025",
+          "targetHandle": "254a40b8-1911-4b83-b8de-3d757f8417af",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-fbc1b25d-e9cb-4ec4-8f3c-01ad4dc95bf9output-aa9b36b7-2b1c-460c-b76f-7896bf339048input",
+          "source": "fbc1b25d-e9cb-4ec4-8f3c-01ad4dc95bf9",
+          "sourceHandle": "output",
+          "target": "aa9b36b7-2b1c-460c-b76f-7896bf339048",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-fbc1b25d-e9cb-4ec4-8f3c-01ad4dc95bf9output-1b1eedfa-6b32-4819-940c-4bff4a672678ocr_extraction",
+          "source": "fbc1b25d-e9cb-4ec4-8f3c-01ad4dc95bf9",
+          "sourceHandle": "output",
+          "target": "1b1eedfa-6b32-4819-940c-4bff4a672678",
+          "targetHandle": "ocr_extraction",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-681c430d-a7c9-484b-a84d-93e328cdd025output-e8e8003d-d426-40e2-a189-b01b97578230insert",
+          "source": "681c430d-a7c9-484b-a84d-93e328cdd025",
+          "sourceHandle": "output",
+          "target": "e8e8003d-d426-40e2-a189-b01b97578230",
+          "targetHandle": "insert",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-5e4a6506-2c5e-42d7-9745-5a0d30d5d201output-e8e8003d-d426-40e2-a189-b01b97578230query",
+          "source": "5e4a6506-2c5e-42d7-9745-5a0d30d5d201",
+          "sourceHandle": "output",
+          "target": "e8e8003d-d426-40e2-a189-b01b97578230",
+          "targetHandle": "query",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-e073bc9b-762b-47e6-bc1a-0f5645575635output-8e68da3a-3043-44e3-8bb6-9b24b352a872fit",
+          "source": "e073bc9b-762b-47e6-bc1a-0f5645575635",
+          "sourceHandle": "output",
+          "target": "8e68da3a-3043-44e3-8bb6-9b24b352a872",
+          "targetHandle": "fit",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-e8e8003d-d426-40e2-a189-b01b97578230query_output-e073bc9b-762b-47e6-bc1a-0f5645575635input",
+          "source": "e8e8003d-d426-40e2-a189-b01b97578230",
+          "sourceHandle": "query_output",
+          "target": "e073bc9b-762b-47e6-bc1a-0f5645575635",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#888",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
           "__class__": "Edge"
         }
       ],

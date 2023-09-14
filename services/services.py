@@ -1,6 +1,7 @@
 import io
 import re
 import shutil
+import traceback
 
 import requests
 
@@ -10,7 +11,7 @@ from sanic_openapi.openapi2 import doc
 from sanic_cors import CORS
 from urllib.parse import unquote
 import sanic
-from sanic.exceptions import SanicException
+from sanic.exceptions import SanicException, NotFound
 
 from model.services_models import FitServiceArgs
 from utils.serialization_utils import deserialize
@@ -336,7 +337,6 @@ async def manage_exception(request, exception):
     # logger.error(f"status code {status_code}")
     logger.error('TracebackERROR: \n' + traceback.format_exc() + '\n\n', exc_info=True)
     return sanic.json(e, status=status_code)
-
 
 app.blueprint(bp)
 if __name__ == "__main__":
