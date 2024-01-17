@@ -74,7 +74,9 @@ def fit_model_service(model_name, train_dataset, eval_dataset, fit_params, compu
 
     except FileNotFoundError as notfound:
         logger.error("!!!!!! model corrupt !!!!!!")
-        raise SanicException(f"Mredictor '{model_name}' doesn't exists or is corrupt...", status_code=404)
+        raise SanicException(f"Predictor '{model_name}' doesn't exists or is corrupt...", status_code=404)
+    if model_blueprint["fitted"]==True:
+        raise SanicException(f"Predictor '{model_name}' already fitted...", status_code=400)
     model_blueprint["fitted"] = "Fitting"
     serialize(model_path, model_blueprint)
 
@@ -124,3 +126,10 @@ def predict_model_service(model_name, test_dataset):
     preds_res = [dict(text=text_data, pred=str(pred)) for text_data, pred in zip(test_dataset, preds)]
     logger.debug(f"pred res:::: {preds_res}")
     return preds_res
+
+
+def check_model_fitted(model_name):
+    model_path = REPO_PATH /model_name
+    model_blueprint = deserialize(path=model_path)
+    if model_blueprint["fitted"]==False:
+        raise SanicException(f"Predictor '{model_name}' not yet fitted...", status_code=400)

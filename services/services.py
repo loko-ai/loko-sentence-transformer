@@ -16,7 +16,7 @@ from sanic.exceptions import SanicException, NotFound
 from model.services_models import FitServiceArgs
 from utils.serialization_utils import deserialize
 from utils.services_utils import create_st_model, fit_model_service, eval_model_service, get_datasets_format_data, \
-    predict_model_service, get_all, check_existence
+    predict_model_service, get_all, check_existence, check_model_fitted
 from config.AppConfig import REPO_PATH, ORCHESTRATOR
 from utils.logger_utils import logger
 from utils.services_utils import load_params
@@ -185,6 +185,10 @@ async def loko_create_model(value, args):
     if not model_name:
         raise ValueError("Model name must be specified...")
 
+    model_path = REPO_PATH / model_name
+    if check_existence(model_path):
+        raise SanicException(f"Model '{model_name}' already exists", status_code=409)
+
     default_params = dict(is_multilabel=False,
                           multi_target_strategy=None,
                           description=""
@@ -230,6 +234,8 @@ async def loko_fit_model(value, args):
 
     if not model_name:
         raise ValueError("Model name must be specified...")
+
+
 
     if "eval_dataset" in data:
         eval_data = data.get("eval_dataset", None)
@@ -290,13 +296,21 @@ async def loko_fit_model(value, args):
 @extract_value_args(file=False)
 async def loko_evaluate_model(value, args):
     eval_data = value.copy()
-    eval_dataset = get_datasets_format_data(eval_data)
+    # eval_dataset = get_datasets_format_data(eval_data)
 
     model_name = args.get("model_name", None)
+
+
     if not model_name:
         raise ValueError("Model name must be specified...")
 
+    models_list = get_all()
+    if model_name not in models_list:
+        raise SanicException(f"Model '{model_name}' doesn't exists", status_code=404)
+    check_model_fitted(model_name)
+
     try:
+        eval_dataset = []
         res = eval_model_service(model_name, eval_dataset)
     except Exception as e:
         raise e
@@ -309,13 +323,16 @@ async def loko_evaluate_model(value, args):
 ''')
 @doc.consumes(doc.JsonBody({}), location="body")
 @extract_value_args(file=False)
-async def loko_evaluate_model(value, args):
+async def loko_predict_model(value, args):
     test_data = value
 
     model_name = args.get("model_name", None)
     if not model_name:
         raise ValueError("Model name must be specified...")
-
+    models_list = get_all()
+    if model_name not in models_list:
+        raise SanicException(f"Model '{model_name}' doesn't exists", status_code=404)
+    check_model_fitted(model_name)
     try:
         res = predict_model_service(model_name, test_data)
     except Exception as e:

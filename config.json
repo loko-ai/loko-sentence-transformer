@@ -2,6 +2,14 @@
   "main": {
     "gui": {
       "name": "Sentence Transformer GUI"
+    },
+    "volumes": [
+        "/var/opt/huggingface:/root/.cache/huggingface",
+        "/var/opt/torch:/root/.cache/torch",
+        "/var/opt/loko/loko-sentence-transformer/repo:/plugin/repo"
+    ],
+    "environment": {
+      "HF_TOKEN": "<insert-your-token-here>"
     }
   }
 }

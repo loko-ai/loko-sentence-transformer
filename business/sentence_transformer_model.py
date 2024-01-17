@@ -14,7 +14,7 @@ from sentence_transformers.losses import CosineSimilarityLoss
 
 from setfit import SetFitModel, SetFitTrainer
 
-from config.AppConfig import REPO_PATH
+from config.AppConfig import REPO_PATH, HF_TOKEN
 from utils.logger_utils import logger
 
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
@@ -31,7 +31,7 @@ class SentenceTransformer:
 
         if is_multilabel:
             multi_target_strategy = multi_target_strategy or "one-vs-rest"
-        model = SetFitModel.from_pretrained(pretrained_name, multi_target_strategy=multi_target_strategy)
+        model = SetFitModel.from_pretrained(pretrained_name, use_auth_token= HF_TOKEN, multi_target_strategy=multi_target_strategy)
         return model
 
     def fit(self, train_dataset, eval_dataset=None, loss=None, metric="accuracy", batch_size=16, n_iter=20, n_epochs=1, learning_rate=0.000_02, column_mapping=None):
